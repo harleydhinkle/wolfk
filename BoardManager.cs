@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,8 +17,8 @@ public class BoardManager : MonoBehaviour
 	private Material previousMat;
 	public Material selectedMat;
 
-	private int selectionX = -1;
-	private int selectionY = -1;
+	private int selectionX = -2;
+	private int selectionY = -2;
 
 	//public int[] EnPassantMove{ set; get;}
 
@@ -152,14 +153,14 @@ public class BoardManager : MonoBehaviour
 		} 
 		else
 		{
-			selectionX = -1;
-			selectionY = -1;
+			selectionX = -2;
+			selectionY = -2;
 		}
 	}
 	private void DrawChessboard ()
 	{
 		Vector3 widthLine = Vector3.right * 9;
-		Vector3 heigthLine = Vector3.forward * 9;
+        Vector3 heigthLine = Vector3.forward * 9;
 		for (int i = 0; i <= 9; i++) 
 		{
 			Vector3 start = Vector3.forward * i;
@@ -198,7 +199,7 @@ public class BoardManager : MonoBehaviour
 	private void SpawnAllChessmans()
 	{
 		activeChessman = new List<GameObject>();
-		Chessmans = new Chessman[9, 9];
+		Chessmans = new Chessman[10, 10];
 		//EnPassantMove = new int[2]{-1,-1};
 
 
@@ -219,7 +220,7 @@ public class BoardManager : MonoBehaviour
 
 		//rooks
 		SpawnChessman (2,0,0);
-		SpawnChessman (2,7,0);
+		//SpawnChessman (2,7,0);
 
 		//bishops
 		SpawnChessman (3,2,0);
@@ -243,7 +244,7 @@ public class BoardManager : MonoBehaviour
 
 		//rooks
 		SpawnChessman (8,0,8);
-		SpawnChessman (8,7,8);
+		//SpawnChessman (8,7,8);
 
 		//bishops
 		SpawnChessman (9,2,8);
@@ -278,5 +279,4 @@ public class BoardManager : MonoBehaviour
 		BoardHighlights.Instance.Hidehighlights ();
 		SpawnAllChessmans ();			
 	}
-
 }
